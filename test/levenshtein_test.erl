@@ -11,9 +11,9 @@ empty_strings_test() ->
 
 same_word_test() ->
   Word = "apple",
-  ?assertEqual(length(Word), levenshtein:distance(Word, Word)).
+  ?assertEqual(0, levenshtein:distance(Word, Word)).
 
 different_word_test() ->
   Word1 = "apple",
   Word2 = "banana",
-  ?assertEqual(6, levenshtein:distance(Word1, Word2)).
+  ?assertEqual(5, levenshtein:distance(Word1, Word2)).
