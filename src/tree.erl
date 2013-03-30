@@ -1,8 +1,7 @@
 -module (tree).
--export ([init/0]).
+-export ([init/1]).
+-include("include/tree.hrl").
 
--record (root_node, {root = nil, size = 0}).
--record (node, {item, child = nil, sibling = nil, dist = 0}).
-
-init() ->
-    #root_node{}.
+init(Word) ->
+    Node = #node{ item=Word },
+    #root_node{ root=Node }.
