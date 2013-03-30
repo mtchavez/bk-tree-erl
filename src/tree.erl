@@ -5,4 +5,4 @@
 -record (node, {item, child = nil, sibling = nil, dist = 0}).
 
 init() ->
-  #root_node{}.
+    #root_node{}.
