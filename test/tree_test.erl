@@ -9,7 +9,10 @@ setup() ->
 
 init_test() ->
     Word = "Apple",
-    Tree = tree:init(Word),
-    ?assertEqual(#root_node{root = #node{item = "Apple",child = nil,
-                        sibling = nil,dist = 0},
-           size = 0}, tree:init(Word)).
+    ?assertEqual({Word, dict:new()}, tree:init(Word)).
+
+insert_test() ->
+    Root = tree:init("apple"),
+    Tree = tree:insert("ape", Root),
+    Children = dict:from_list([{2, {"ape", dict:new()}}]),
+    ?assertEqual({"apple", Children}, Tree).
