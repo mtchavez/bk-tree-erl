@@ -1,6 +1,5 @@
 -module (tree).
 -export ([init/1, insert/2]).
--include("../include/tree.hrl").
 
 init(Word) ->
     {Word, dict:new()}.

@@ -1,7 +1,6 @@
 -module(tree_test).
 -compile(export_all).
 -include_lib("eunit/include/eunit.hrl").
--include("include/tree.hrl").
 
 setup() ->
     ok = application:start(bktree),
