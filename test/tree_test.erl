@@ -15,3 +15,11 @@ insert_test() ->
     Tree = tree:insert("ape", Root),
     Children = dict:from_list([{2, {"ape", dict:new()}}]),
     ?assertEqual({"apple", Children}, Tree).
+
+search_test() ->
+    T = tree:init("apple"),
+    T2 = tree:insert("ape", T),
+    T3 = tree:insert("apes", T2),
+    T4 = tree:insert("ale", T3),
+    ?assertEqual(tree:search("ape", T4), []),
+    ?assertEqual(tree:search("ape", T4, 2), [{0,"ape"},{1,"ale"}]).
