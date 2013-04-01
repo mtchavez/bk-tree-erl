@@ -32,16 +32,16 @@ search(Word, {NodeWord, NodeChildren}, Depth, Found) ->
             Pred = fun(Key) ->
                 NewTree = dict:fetch(Key, NodeChildren),
                 {Term, _} = NewTree,
-                Dist = levenshtein:distance(Word, Term),
-                NewFound = lists:append(Found, [{Dist, Term}]),
-                search(Word, NewTree, Depth, NewFound)
+                search(Word, NewTree, Depth, Found)
             end,
-
-            Dist = levenshtein:distance(Word, NodeWord),
             Keys = dict:fetch_keys(NodeChildren),
-            {Good, _} = lists:partition(fun(Key) -> Dist =< Key andalso Depth >= Key end, Keys),
-            lists:flatten(lists:map(Pred, Good));
+            lists:flatten(lists:map(Pred, Keys));
         false ->
-            erlang:display(NodeWord),
-            Found
+            Dist = levenshtein:distance(Word, NodeWord),
+            case Depth >= Dist of
+                true ->
+                    lists:append(Found, [{Dist, NodeWord}]);
+                false ->
+                    []
+            end
     end.
