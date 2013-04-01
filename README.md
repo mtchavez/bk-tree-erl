@@ -31,7 +31,7 @@ tree:search("budweiser", T4).
 % returns []
 ```
 
-Increasing the depth will give you more terms that are close to your root node.
+Increasing the depth will give you more terms that are close to your search term.
 
 ```erlang
 tree:search("deli", T4, 4).
