@@ -27,21 +27,19 @@ search(Word, Tree, Depth) ->
     search(Word, Tree, Depth, []).
 
 search(Word, {NodeWord, NodeChildren}, Depth, Found) ->
-    case dict:size(NodeChildren) > 0 of
+    Dist = levenshtein:distance(Word, NodeWord),
+    MaxDepth = Dist+Depth,
+    MinDepth = Dist-Depth,
+    SubtreeSearch =
+        fun(ChildDist, Child, Acc) when ChildDist >= MinDepth, ChildDist =< MaxDepth ->
+                search(Word, Child, Depth, Acc);
+           (_,_,Acc) ->
+                Acc
+        end,
+    SubtreeRes = dict:fold(SubtreeSearch, Found, NodeChildren),
+    case Depth >= Dist of
         true ->
-            Pred = fun(Key) ->
-                NewTree = dict:fetch(Key, NodeChildren),
-                {Term, _} = NewTree,
-                search(Word, NewTree, Depth, Found)
-            end,
-            Keys = dict:fetch_keys(NodeChildren),
-            lists:flatten(lists:map(Pred, Keys));
+            [{Dist, NodeWord} | SubtreeRes];
         false ->
-            Dist = levenshtein:distance(Word, NodeWord),
-            case Depth >= Dist of
-                true ->
-                    lists:append(Found, [{Dist, NodeWord}]);
-                false ->
-                    []
-            end
+            SubtreeRes
     end.
