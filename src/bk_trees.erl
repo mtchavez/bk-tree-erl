@@ -1,4 +1,4 @@
--module (tree).
+-module (bk_trees).
 -export ([init/1, insert/2, search/2, search/3]).
 
 init(Word) ->

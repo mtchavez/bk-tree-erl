@@ -8,18 +8,18 @@ setup() ->
 
 init_test() ->
     Word = "Apple",
-    ?assertEqual({Word, dict:new()}, tree:init(Word)).
+    ?assertEqual({Word, dict:new()}, bk_trees:init(Word)).
 
 insert_test() ->
-    Root = tree:init("apple"),
-    Tree = tree:insert("ape", Root),
+    Root = bk_trees:init("apple"),
+    Tree = bk_trees:insert("ape", Root),
     Children = dict:from_list([{2, {"ape", dict:new()}}]),
     ?assertEqual({"apple", Children}, Tree).
 
 search_test() ->
-    T = tree:init("brewery"),
-    T2 = tree:insert("stone", T),
-    T3 = tree:insert("anchorsteam", T2),
-    T4 = tree:insert("delirium", T3),
-    ?assertEqual(tree:search("deli", T4, 4), [{4, "delirium"}]),
-    ?assertEqual(tree:search("deli", T4, 5), [{5, "stone"},{4, "delirium"}]).
+    T = bk_trees:init("brewery"),
+    T2 = bk_trees:insert("stone", T),
+    T3 = bk_trees:insert("anchorsteam", T2),
+    T4 = bk_trees:insert("delirium", T3),
+    ?assertEqual(bk_trees:search("deli", T4, 4), [{4, "delirium"}]),
+    ?assertEqual(bk_trees:search("deli", T4, 5), [{5, "stone"},{4, "delirium"}]).
