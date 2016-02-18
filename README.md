@@ -9,15 +9,15 @@ In the Erlang console initialize a tree with a root node
 
 ```erlang
 c(tree).
-T = tree:init("brewery").
+T = bk_trees:init("brewery").
 ```
 
 Then add some more terms to the tree
 
 ```erlang
-T2 = tree:insert("stone", T).
-T3 = tree:insert("anchorsteam", T2).
-T4 = tree:insert("delirium", T3).
+T2 = bk_trees:insert("stone", T).
+T3 = bk_trees:insert("anchorsteam", T2).
+T4 = bk_trees:insert("delirium", T3).
 ```
 
 ## Searching
@@ -27,17 +27,17 @@ Once you have populated the tree you can do a search.
 Default depth is ```1``` when doing a search.
 
 ```erlang
-tree:search("budweiser", T4).
+bk_trees:search("budweiser", T4).
 % returns []
 ```
 
 Increasing the depth will give you more terms that are close to your search term.
 
 ```erlang
-tree:search("deli", T4, 4).
+bk_trees:search("deli", T4, 4).
 % returns [{4,"delirium"}]
 
-tree:search("deli", T4, 5).
+bk_trees:search("deli", T4, 5).
 % returns [{5,"stone"},{4,"delirium"}]
 ```
 
