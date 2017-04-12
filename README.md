@@ -1,5 +1,4 @@
-Erlang BK-Tree
-===========
+# Erlang BK-Tree
 
 [![Build Status](https://travis-ci.org/mtchavez/bk-tree-erl.png?branch=master)](https://travis-ci.org/mtchavez/bk-tree-erl)
 
@@ -8,7 +7,8 @@ Erlang BK-Tree
 In the Erlang console initialize a tree with a root node
 
 ```erlang
-c(tree).
+cd("./src").
+c("bk_trees").
 T = bk_trees:init("brewery").
 ```
 
@@ -44,10 +44,3 @@ bk_trees:search("deli", T4, 5).
 ## Tests
 
 Run using ```make test```
-
-## License
-
-Written by Chavez
-
-Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
-
