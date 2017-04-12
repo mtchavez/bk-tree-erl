@@ -6,3 +6,5 @@ deps
 ebin/
 rel/bktree/
 .rebar
+_build
+TEST-*
