@@ -1,16 +1,16 @@
 all: depend compile
 
 depend:
-	rebar get-deps
+	rebar3 get-deps
 
 compile:
-	rebar compile
+	rebar3 compile
 
 test: compile
-	rebar eunit
+	rebar3 eunit
 
 clean:
-	rebar clean
+	rebar3 clean
 
 console: all
 	cd ./src && erl
