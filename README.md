@@ -44,10 +44,3 @@ bk_trees:search("deli", T4, 5).
 ## Tests
 
 Run using ```make test```
-
-## License
-
-Written by Chavez
-
-Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
-
